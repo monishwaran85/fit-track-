@@ -1,0 +1,19 @@
+const express = require('express');
+const { getWorkoutRecommendation, getFitnessInsights } = require('../controllers/aiController');
+const { protect } = require('../middleware/auth');
+
+const router = express.Router();
+
+// Apply JWT authentication protection to all AI routes
+router.use(protect);
+
+// Endpoint: POST /api/ai/recommendation
+router.post('/recommendation', getWorkoutRecommendation);
+
+// Endpoint: POST /api/ai/workout-recommendation
+router.post('/workout-recommendation', getWorkoutRecommendation);
+
+// Endpoint: POST /api/ai/fitness-insights
+router.post('/fitness-insights', getFitnessInsights);
+
+module.exports = router;
